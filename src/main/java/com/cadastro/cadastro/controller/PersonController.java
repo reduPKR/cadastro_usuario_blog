@@ -1,11 +1,12 @@
 package com.cadastro.cadastro.controller;
 
 import com.cadastro.cadastro.dto.PersonDTO;
+import com.cadastro.cadastro.response.MessagePerson;
 import com.cadastro.cadastro.service.PersonService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,5 +21,11 @@ public class PersonController {
     @GetMapping
     public List<PersonDTO> getAll(){
         return service.getAll();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public MessagePerson create(@Valid @RequestBody PersonDTO personDTO){
+        return service.create(personDTO);
     }
 }
