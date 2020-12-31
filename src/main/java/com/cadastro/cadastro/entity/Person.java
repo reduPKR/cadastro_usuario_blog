@@ -1,5 +1,7 @@
 package com.cadastro.cadastro.entity;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 

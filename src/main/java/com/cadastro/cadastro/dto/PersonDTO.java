@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -11,18 +12,19 @@ public class PersonDTO {
     private long id;
 
     @NotEmpty
-    @Size(min=3, max=100)
+    @Size(min=3, max=100, message = "Nome tem que ter entre 3 e 100 caracteres")
     private String name;
 
-    @NotEmpty
-    @Size(min=3, max=100)
-    @Email
+    @NotEmpty(message = "Email não pode estar vazio")
+    @Size(min=5, max=100, message = "Email tem que ter entre 5 e 100 caracteres")
+    @Email(message = "Email inválido")
     private String email;
 
-    @NotEmpty
-    @CPF
+    @NotEmpty(message = "CPF não pode estar vazio")
+    @CPF(message = "* CPF inválido")
     private String cpf;
 
+    @NotNull(message = "Data de nascimento não pode estar vazia")
     private LocalDate birthdate;
 
     public PersonDTO() {
